@@ -35,7 +35,7 @@ INSERT INTO Equipe (nom, pays, stade, nb_joueurs) VALUES
 ('R. Antwerp', 'Belgique', 'Bosuilstadion', 22);
 
 INSERT INTO Entraineur (nom, prenom, club, pays, date_debut) VALUES
-('Klopp', 'Jurgen', 1, 'Allemagne', '2015-10-08'),
+('Tuchel', 'Thomas', 1, 'Allemagne', '2015-10-08'),
 ('Solskjaer', 'Ole Gunnar', 2, 'Norvège', '2018-12-19'),
 ('Thorup', 'Jess', 3, 'Danemark', '2020-09-10'),
 ('Terim', 'Fatih', 4, 'Turquie', '2017-12-22'),
@@ -54,19 +54,19 @@ INSERT INTO Entraineur (nom, prenom, club, pays, date_debut) VALUES
 ('Advocaat', 'Dick', 17, 'Pays-Bas', '2019-10-30'),
 ('Simeone', 'Diego', 18, 'Argentine', '2011-12-23'),
 ('Inzaghi', 'Simone', 19, 'Italie', '2016-07-01'),
-'Lennon', 'Neil', 20, 'Écosse', '2019-02-27'),
-('Tuchel', 'Thomas', 21, 'Allemagne', '2018-07-14'),
-'Favre', 'Lucien', 22, 'Suisse', '2018-07-01'),
-'Pioli', 'Stefano', 23, 'Italie', '2019-10-09'),
-'Bruce', 'Steve', 24, 'Angleterre', '2019-07-17'),
-'Guardiola', 'Pep', 25, 'Espagne', '2016-07-01'),
-'Nagelsmann', 'Julian', 26, 'Allemagne', '2019-07-01'),
-'Stankovic', 'Dejan', 27, 'Serbie', '2019-12-21'),
-'Wagner', 'Gerardo', 28, 'Suisse', '2018-07-01'),
-'Koeman', 'Ronald', 29, 'Pays-Bas', '2020-08-19'),
-'Conceicao', 'Sergio', 30, 'Portugal', '2017-06-08'),
-'Castro', 'Luis', 31, 'Portugal', '2020-07-01'),
-'Vercauteren', 'Frank', 32, 'Belgique', '2019-10-03');
+('Lennon', 'Neil', 20, 'Écosse', '2019-02-27'),
+('Enrique', 'Luis', 21, 'Espagne', '2018-07-14'),
+('Favre', 'Lucien', 22, 'Suisse', '2018-07-01'),
+('Pioli', 'Stefano', 23, 'Italie', '2019-10-09'),
+('Bruce', 'Steve', 24, 'Angleterre', '2019-07-17'),
+('Guardiola', 'Pep', 25, 'Espagne', '2016-07-01'),
+('Nagelsmann', 'Julian', 26, 'Allemagne', '2019-07-01'),
+('Stankovic', 'Dejan', 27, 'Serbie', '2019-12-21'),
+('Wagner', 'Gerardo', 28, 'Suisse', '2018-07-01'),
+('Hernandez', 'Xavi', 29, 'Espagne', '2020-08-19'),
+('Conceicao', 'Sergio', 30, 'Portugal', '2017-06-08'),
+('Castro', 'Luis', 31, 'Portugal', '2020-07-01'),
+('Vercauteren', 'Frank', 32, 'Belgique', '2019-10-03');
 
 
 INSERT INTO Joueur (nom, prenom, club, pays, numero, poste) VALUES
@@ -138,3 +138,20 @@ INSERT INTO Joueur (nom, prenom, club, pays, numero, poste) VALUES
 ('Modric', 'Luka', 10, 'Croatie', 10, 'Milieu'),
 ('Benzema', 'Karim', 10, 'France', 9, 'Attaquant'),
 ('Vinicius', 'Junior', 10, 'Brésil', 20, 'Attaquant');
+
+INSERT INTO Groupe (nom, equipe1, equipe2, equipe3, equipe4) VALUES
+('Groupe A', (SELECT id_equipe FROM Equipe WHERE nom='Bayern Munich'), (SELECT id_equipe FROM Equipe WHERE nom='Manchester United'), (SELECT id_equipe FROM Equipe WHERE nom='Copenhague'), (SELECT id_equipe FROM Equipe WHERE nom='Galatasaray')),
+('Groupe B', (SELECT id_equipe FROM Equipe WHERE nom='Séville'), (SELECT id_equipe FROM Equipe WHERE nom='Arsenal'), (SELECT id_equipe FROM Equipe WHERE nom='PSV Eindhoven'), (SELECT id_equipe FROM Equipe WHERE nom='Lens')),
+('Groupe C', (SELECT id_equipe FROM Equipe WHERE nom='Naples'), (SELECT id_equipe FROM Equipe WHERE nom='Real Madrid'), (SELECT id_equipe FROM Equipe WHERE nom='Braga'), (SELECT id_equipe FROM Equipe WHERE nom='Union Berlin')),
+('Groupe D', (SELECT id_equipe FROM Equipe WHERE nom='Benfica'), (SELECT id_equipe FROM Equipe WHERE nom='Inter'), (SELECT id_equipe FROM Equipe WHERE nom='Salzbourg'), (SELECT id_equipe FROM Equipe WHERE nom='Real Sociedad')),
+('Groupe E', (SELECT id_equipe FROM Equipe WHERE nom='Feyenoord'), (SELECT id_equipe FROM Equipe WHERE nom='Atlético de Madrid'), (SELECT id_equipe FROM Equipe WHERE nom='Lazio'), (SELECT id_equipe FROM Equipe WHERE nom='Celtic')),
+('Groupe F', (SELECT id_equipe FROM Equipe WHERE nom='Paris Saint-Germain'), (SELECT id_equipe FROM Equipe WHERE nom='Borussia Dortmund'), (SELECT id_equipe FROM Equipe WHERE nom='AC Milan'), (SELECT id_equipe FROM Equipe WHERE nom='Newcastle United')),
+('Groupe G', (SELECT id_equipe FROM Equipe WHERE nom='Manchester City'), (SELECT id_equipe FROM Equipe WHERE nom='Leipzig'), (SELECT id_equipe FROM Equipe WHERE nom='Étoile Rouge'), (SELECT id_equipe FROM Equipe WHERE nom='Young Boys')),
+('Groupe H', (SELECT id_equipe FROM Equipe WHERE nom='Barcelone'), (SELECT id_equipe FROM Equipe WHERE nom='Porto'), (SELECT id_equipe FROM Equipe WHERE nom='Shakhtar'), (SELECT id_equipe FROM Equipe WHERE nom='R. Antwerp'));
+
+INSERT INTO Match (date_match, heure, lieu, equipe1, equipe2, score1, score2, phase, groupe, arbitre) VALUES
+('2023-09-20', '21:00', 'Allianz Arena', (SELECT id_equipe FROM Equipe WHERE nom='Bayern Munich'), (SELECT id_equipe FROM Equipe WHERE nom='Manchester United'), 4, 3, 'Phase de groupes', (SELECT id_groupe FROM Groupe WHERE nom='Groupe A'), 'Felix Zwayer'),
+('2023-09-20', '21:00', 'Emirates Stadium', (SELECT id_equipe FROM Equipe WHERE nom='Arsenal'), (SELECT id_equipe FROM Equipe WHERE nom='PSV Eindhoven'), 4, 0, 'Phase de groupes', (SELECT id_groupe FROM Groupe WHERE nom='Groupe B'), 'Cüneyt Çakır'),
+('2023-10-04', '18:45', 'Estadio Santiago Bernabeu', (SELECT id_equipe FROM Equipe WHERE nom='Real Madrid'), (SELECT id_equipe FROM Equipe WHERE nom='Braga'), 3, 0, 'Phase de groupes', (SELECT id_groupe FROM Groupe WHERE nom='Groupe C'), 'Damir Skomina'),
+('2023-10-04', '21:00', 'San Siro', (SELECT id_equipe FROM Equipe WHERE nom='Inter'), (SELECT id_equipe FROM Equipe WHERE nom='Salzbourg'), 2, 1, 'Phase de groupes', (SELECT id_groupe FROM Groupe WHERE nom='Groupe D'), 'Anthony Taylor'),
+('2023-11-01', '21:00', 'Parc des Princes', (SELECT id_equipe FROM Equipe WHERE nom='Paris Saint-Germain'), (SELECT id_equipe FROM Equipe WHERE nom='Borussia Dortmund'), 2, 0, 'Phase de groupes', (SELECT id_groupe FROM Groupe WHERE nom='Groupe F'), 'Danny Makkelie');
