@@ -1,8 +1,15 @@
 <?php
+
+function generateCSRFToken() {
+    return bin2hex(random_bytes(32));
+}
+
 session_start();
+
 if(!isset($_SESSION['csrf_token'])){
     $_SESSION['csrf_token'] = generateCSRFToken();
 }
+
 require_once 'modules/connexion.php';
 Connexion::initConnexion();
 
@@ -37,14 +44,8 @@ if (isset($_GET['module'])) {
             echo "Aucun module détecté";
             break;
     }
-
-
-    function generateCSRFToken()
-    {
-        return bin2hex(random_bytes(32));
-    }
-
-
 }
+
 include_once "footer.php";
 ?>
+
