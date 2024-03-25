@@ -1,5 +1,17 @@
-<?php
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LDCHistory</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.cdnfonts.com/css/hafigde" rel="stylesheet">
+</head>
+<body>
 
+<?php
+define('MY_APP', true);
 function generateCSRFToken() {
     return bin2hex(random_bytes(32));
 }
@@ -11,7 +23,7 @@ if(!isset($_SESSION['csrf_token'])){
 }
 
 require_once 'modules/connexion.php';
-Connexion::initConnexion();
+connexion::initConnexion();
 
 
 include_once "header.php";
@@ -49,3 +61,7 @@ if (isset($_GET['module'])) {
 include_once "footer.php";
 ?>
 
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/script.js"></script>
+</body>
+</html>

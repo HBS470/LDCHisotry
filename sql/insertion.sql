@@ -1,4 +1,4 @@
-SET SEARCH_PATH TO ldc
+USE ldc;
 
 INSERT INTO Equipe (nom, pays, stade, nb_joueurs) VALUES
 ('Bayern Munich', 'Allemagne', 'Allianz Arena', 39),
@@ -117,7 +117,7 @@ INSERT INTO Joueur (nom, prenom, club, pays, numero, poste) VALUES
 ('Götze', 'Mario', 7, 'Allemagne', 27, 'Milieu'),
 ('Mvogo', 'Yvon', 7, 'Suisse', 38, 'Gardien'),
 ('Malen', 'Donyell', 7, 'Pays-Bas', 9, 'Attaquant'),
-('Dumfries', 'Denzel', 7, 'Pays-Bas', 22, 'Défenseur');
+('Dumfries', 'Denzel', 7, 'Pays-Bas', 22, 'Défenseur'),
 
 -- Lens
 ('Leca', 'Jean-Louis', 8, 'France', 16, 'Gardien'),
@@ -149,7 +149,7 @@ INSERT INTO Groupe (nom, equipe1, equipe2, equipe3, equipe4) VALUES
 ('Groupe G', (SELECT id_equipe FROM Equipe WHERE nom='Manchester City'), (SELECT id_equipe FROM Equipe WHERE nom='Leipzig'), (SELECT id_equipe FROM Equipe WHERE nom='Étoile Rouge'), (SELECT id_equipe FROM Equipe WHERE nom='Young Boys')),
 ('Groupe H', (SELECT id_equipe FROM Equipe WHERE nom='Barcelone'), (SELECT id_equipe FROM Equipe WHERE nom='Porto'), (SELECT id_equipe FROM Equipe WHERE nom='Shakhtar'), (SELECT id_equipe FROM Equipe WHERE nom='R. Antwerp'));
 
-INSERT INTO Match (date_match, heure, lieu, equipe1, equipe2, score1, score2, phase, groupe, arbitre) VALUES
+INSERT INTO Matchs (date_match, heure, lieu, equipe1, equipe2, score1, score2, phase, groupe, arbitre) VALUES
 ('2023-09-20', '21:00', 'Allianz Arena', (SELECT id_equipe FROM Equipe WHERE nom='Bayern Munich'), (SELECT id_equipe FROM Equipe WHERE nom='Manchester United'), 4, 3, 'Phase de groupes', (SELECT id_groupe FROM Groupe WHERE nom='Groupe A'), 'Felix Zwayer'),
 ('2023-09-20', '21:00', 'Emirates Stadium', (SELECT id_equipe FROM Equipe WHERE nom='Arsenal'), (SELECT id_equipe FROM Equipe WHERE nom='PSV Eindhoven'), 4, 0, 'Phase de groupes', (SELECT id_groupe FROM Groupe WHERE nom='Groupe B'), 'Cüneyt Çakır'),
 ('2023-10-04', '18:45', 'Estadio Santiago Bernabeu', (SELECT id_equipe FROM Equipe WHERE nom='Real Madrid'), (SELECT id_equipe FROM Equipe WHERE nom='Braga'), 3, 0, 'Phase de groupes', (SELECT id_groupe FROM Groupe WHERE nom='Groupe C'), 'Damir Skomina'),
